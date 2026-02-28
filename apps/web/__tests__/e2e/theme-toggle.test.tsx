@@ -10,7 +10,7 @@ vi.mock('next-themes', () => ({
 
 import { ThemeToggle } from '@/components/theme-toggle'
 
-describe('ThemeToggle e2e', () => {
+describe('theme toggle e2e', () => {
   it('toggles from light to dark on click', async () => {
     const user = userEvent.setup()
     render(<ThemeToggle />)

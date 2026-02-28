@@ -27,7 +27,7 @@ vi.mock('next-themes', () => ({
 
 import { RootLayout } from '@/components/root-layout'
 
-describe('RootLayout', () => {
+describe('root layout', () => {
   it('renders all layout landmarks', () => {
     render(<RootLayout><div /></RootLayout>)
     expect(screen.getByRole('banner')).toBeInTheDocument()

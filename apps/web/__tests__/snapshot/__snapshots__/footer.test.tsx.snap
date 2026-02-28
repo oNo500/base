@@ -1,6 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Footer snapshot > matches snapshot 1`] = `
+exports[`footer snapshot > matches snapshot 1`] = `
 <footer
   class="border-t border-border"
 >

@@ -9,7 +9,7 @@ vi.mock('@/config/env', () => ({
 
 import { Footer } from '@/components/footer'
 
-describe('Footer', () => {
+describe('footer', () => {
   it('renders app name', () => {
     render(<Footer />)
     expect(screen.getByText(/Test App/)).toBeInTheDocument()

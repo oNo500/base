@@ -11,6 +11,7 @@ const config: Linter.Config[] = composeConfig({
   react: true,
   unicorn: true,
   stylistic: true,
+  vitest: true,
 });
 
 export default config;

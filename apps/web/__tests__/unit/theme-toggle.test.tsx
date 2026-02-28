@@ -7,9 +7,9 @@ vi.mock('next-themes', () => ({
 
 import { ThemeToggle } from '@/components/theme-toggle'
 
-describe('ThemeToggle', () => {
-  it('renders toggle button', async () => {
-    await act(async () => {
+describe('theme toggle', () => {
+  it('renders toggle button', () => {
+    act(() => {
       render(<ThemeToggle />)
     })
     expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument()

@@ -27,7 +27,7 @@ vi.mock('next-themes', () => ({
 
 import { Navbar } from '@/components/navbar'
 
-describe('Navbar', () => {
+describe('navbar', () => {
   it('renders app name', () => {
     render(<Navbar />)
     expect(screen.getByText('Test App')).toBeInTheDocument()

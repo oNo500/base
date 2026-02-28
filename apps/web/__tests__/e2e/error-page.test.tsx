@@ -4,7 +4,7 @@ import { describe, expect, it, vi } from 'vitest'
 
 import ErrorPage from '@/app/error'
 
-describe('ErrorPage e2e', () => {
+describe('error page e2e', () => {
   it('calls reset on Try again click', async () => {
     const user = userEvent.setup()
     const reset = vi.fn()

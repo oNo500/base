@@ -17,9 +17,9 @@ afterAll(() => {
 
 import { Footer } from '@/components/footer'
 
-describe('Footer snapshot', () => {
+describe('footer snapshot', () => {
   it('matches snapshot', () => {
     const { container } = render(<Footer />)
-    expect(container.firstChild).toMatchSnapshot()
+    expect(container.firstChild as Element).toMatchSnapshot()
   })
 })
