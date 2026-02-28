@@ -11,12 +11,14 @@
   },
   "dependencies": {
     "@infra-x/typescript-config": "^0.1.6",
+    "@t3-oss/env-nextjs": "^0.13.10",
+    "@workspace/eslint-config": "workspace:*",
     "@workspace/ui": "workspace:*",
-    "@workspace/eslint-config":"workspace:*",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
-    "shadcn": "^3.8.5"
+    "shadcn": "^3.8.5",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
