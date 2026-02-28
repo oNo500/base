@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# apps/web
 
-## Getting Started
+`@workspace/web` 的最小启动模板，基于 Next.js 16 App Router 构建。
 
-First, run the development server:
+## 技术栈
+
+- **框架**: Next.js 16 (App Router, React Compiler)
+- **样式**: Tailwind CSS v4
+- **组件库**: `@workspace/ui`（monorepo 内部包）
+- **环境变量**: `@t3-oss/env-nextjs` + Zod 验证
+- **测试**: Vitest + Testing Library
+
+## 已包含的基础设施
+
+- 环境变量集中管理（`src/config/env.ts`）
+- HTTP 安全响应头（`X-Frame-Options`、`X-Content-Type-Options` 等）
+- 完整 metadata 配置（`metadataBase`、Open Graph、Twitter Card）
+- 原生 sitemap（`/sitemap.xml`）
+- 跳过导航无障碍链接
+- 亮/暗色主题支持
+
+## 快速启动
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+# 在 monorepo 根目录安装依赖
+pnpm install
+
+# 复制环境变量文件
+cp apps/web/.env.example apps/web/.env.local
+
+# 启动开发服务器
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 关键约定
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 环境变量
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+所有环境变量必须在 `src/config/env.ts` 中声明并验证，其他文件从该模块导入，禁止直接访问 `process.env.*` 或 `import.meta.env.*`。
 
-## Learn More
+```ts
+import { env } from '@/config/env'
 
-To learn more about Next.js, take a look at the following resources:
+env.NEXT_PUBLIC_APP_URL // 正确
+process.env.NEXT_PUBLIC_APP_URL // 禁止
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 路径别名
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+应用内路径通过 `@/` 别名引用，跨包路径在 `tsconfig.json` 中配置。

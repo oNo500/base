@@ -2,11 +2,23 @@ import { AppProvider } from './provide'
 
 import type { Metadata } from 'next'
 
+import { env } from '@/config/env'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Base',
+  metadataBase: new URL(env.NEXT_PUBLIC_APP_URL),
+  title: {
+    default: env.NEXT_PUBLIC_APP_NAME,
+    template: `%s | ${env.NEXT_PUBLIC_APP_NAME}`,
+  },
   description: 'A minimal foundation.',
+  openGraph: {
+    type: 'website',
+    siteName: env.NEXT_PUBLIC_APP_NAME,
+  },
+  twitter: {
+    card: 'summary_large_image',
+  },
 }
 
 export default function RootLayout({
