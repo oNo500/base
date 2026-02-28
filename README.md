@@ -12,3 +12,4 @@
    3. ntegration Testing 
    4. Snapshot Testing
 > 命名约定 `__tests__`
+9. github 工作流进行代码检查/测试
