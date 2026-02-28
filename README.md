@@ -6,3 +6,9 @@
 5. 主题配置
 6. error-boundary: react-error-boundary
 7. 标配骨架
+8. 添加 vitest(antd 还有视觉回归的参考)
+   1. End-to-End (E2E) - vitest
+   2. Component Testing
+   3. ntegration Testing 
+   4. Snapshot Testing
+> 命名约定 `__tests__`
