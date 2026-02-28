@@ -5,7 +5,7 @@ import { appPaths } from '@/config/app-paths'
 
 export function HeroSection() {
   return (
-    <section className="flex min-h-screen flex-col items-center justify-center px-6 text-center">
+    <section className="flex h-full flex-col items-center justify-center py-24 text-center">
       <div className="max-w-2xl space-y-6">
         <h1 className="text-balance text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
           Build Something Minimal.

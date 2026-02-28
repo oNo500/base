@@ -1,6 +1,6 @@
 'use client'
 
-import { ErrorBoundary } from 'react-error-boundary'
+import { ErrorBoundary as ReactErrorBoundary } from 'react-error-boundary'
 
 import type { FallbackProps } from 'react-error-boundary'
 
@@ -17,10 +17,10 @@ function ErrorFallback({ error }: FallbackProps) {
   )
 }
 
-export function MainContent({ children }: { children: React.ReactNode }) {
+export function ErrorBoundary({ children }: { children: React.ReactNode }) {
   return (
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <main id="main-content" className="pt-14">{children}</main>
-    </ErrorBoundary>
+    <ReactErrorBoundary FallbackComponent={ErrorFallback}>
+      {children}
+    </ReactErrorBoundary>
   )
 }
