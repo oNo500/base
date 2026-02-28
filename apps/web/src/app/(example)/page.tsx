@@ -1,10 +1,10 @@
-import { Layout } from '@/components/layout'
+import { RootLayout } from '@/components/layout'
 import { HeroSection } from '@/features/example/hero-section'
 
 export default function Home() {
   return (
-    <Layout>
+    <RootLayout>
       <HeroSection />
-    </Layout>
+    </RootLayout>
   )
 }
