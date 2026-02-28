@@ -1,8 +1,9 @@
+import { env } from '@/config/env'
+
 import { AppProvider } from './provide'
 
 import type { Metadata } from 'next'
 
-import { env } from '@/config/env'
 import '@/styles/globals.css'
 
 export const metadata: Metadata = {

@@ -5,7 +5,7 @@ export const env = createEnv({
   server: {},
   client: {
     NEXT_PUBLIC_APP_NAME: z.string().optional().default('example app'),
-    NEXT_PUBLIC_APP_URL: z.string().url().optional().default('http://localhost:3000'),
+    NEXT_PUBLIC_APP_URL: z.url().optional().default('http://localhost:3000'),
   },
   shared: {
     NODE_ENV: z.enum(['development', 'test', 'production']),

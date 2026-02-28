@@ -1,10 +1,10 @@
 'use client'
 
 import { Github } from '@workspace/icons'
-import { ThemeSwitcher } from '@workspace/ui/components/kibo-ui/theme-switcher'
 import { Button } from '@workspace/ui/components/button'
-import { useTheme } from 'next-themes'
+import { ThemeSwitcher } from '@workspace/ui/components/kibo-ui/theme-switcher'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 
 import { Logo } from '@/components/logo'
 import { appPaths } from '@/config/app-paths'
