@@ -1,7 +1,5 @@
 'use client'
 
-import { useState } from 'react'
-import { useRouter } from 'next/navigation'
 import { Button } from '@workspace/ui/components/button'
 import {
   Field,
@@ -12,11 +10,17 @@ import {
 } from '@workspace/ui/components/field'
 import { Input } from '@workspace/ui/components/input'
 import { cn } from '@workspace/ui/lib/utils'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 
+import { Logo } from '@/components/logo'
 import { appPaths } from '@/config/app-paths'
 import { env } from '@/config/env'
-import { Logo } from '@/components/logo'
 import { authClient } from '@/lib/auth-client'
+
+function handleGitHubSignIn() {
+  void authClient.signIn.social({ provider: 'github' })
+}
 
 export function LoginForm({
   className,
@@ -26,7 +30,7 @@ export function LoginForm({
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
 
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.SyntheticEvent<HTMLFormElement>) {
     e.preventDefault()
     const form = e.currentTarget
     const email = (form.elements.namedItem('email') as HTMLInputElement).value
@@ -47,10 +51,6 @@ export function LoginForm({
     router.push(appPaths.home.href)
   }
 
-  function handleGitHubSignIn() {
-    authClient.signIn.social({ provider: 'github' })
-  }
-
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <form onSubmit={handleSubmit}>
@@ -63,7 +63,10 @@ export function LoginForm({
               <Logo />
               <span className="sr-only">{env.NEXT_PUBLIC_APP_NAME}</span>
             </a>
-            <h1 className="text-xl font-bold">Welcome to {env.NEXT_PUBLIC_APP_NAME}</h1>
+            <h1 className="text-xl font-bold">
+              Welcome to
+              {env.NEXT_PUBLIC_APP_NAME}
+            </h1>
             <FieldDescription>
               Don&apos;t have an account?
               {' '}
