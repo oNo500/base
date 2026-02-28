@@ -21,20 +21,8 @@ vi.mock('next/link', () => ({
   ),
 }))
 
-vi.mock('@workspace/icons', () => ({
-  Github: () => <svg data-testid="github-icon" />,
-}))
-
-vi.mock('@workspace/ui/components/button', () => ({
-  Button: ({ children, ...props }: React.HTMLAttributes<HTMLElement>) => <button {...props}>{children}</button>,
-}))
-
-vi.mock('@/components/logo', () => ({
-  Logo: () => <span data-testid="logo" />,
-}))
-
-vi.mock('@/components/theme-toggle', () => ({
-  ThemeToggle: () => <button data-testid="theme-toggle" />,
+vi.mock('next-themes', () => ({
+  useTheme: () => ({ resolvedTheme: 'light', setTheme: vi.fn() }),
 }))
 
 import { Navbar } from '@/components/navbar'
