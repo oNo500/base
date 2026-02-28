@@ -5,13 +5,17 @@ export const appPaths = {
     href: '/',
   },
   auth: {
-    register: {
+    signup: {
       getHref: (redirectTo?: string | null) =>
-        `/register${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
+        `/signup${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
     },
     login: {
       getHref: (redirectTo?: string | null) =>
         `/login${redirectTo ? `?redirectTo=${encodeURIComponent(redirectTo)}` : ''}`,
     },
+  },
+  legal: {
+    terms: { href: '/terms' },
+    privacy: { href: '/privacy' },
   },
 }
