@@ -10,7 +10,7 @@ const config: Linter.Config[] = composeConfig({
   nextjs: true,
   react: true,
   unicorn: true,
-  stylistic:true
+  stylistic: true,
 });
 
 export default config;

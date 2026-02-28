@@ -2,7 +2,7 @@ import { createClient } from '@infra-x/fwrap'
 
 import type { RequestOptions } from '@infra-x/fwrap'
 
-export const api = createClient({
+export const fetchClient = createClient({
 //   prefixUrl:,
   timeout: 30_000,
   retry: {
@@ -25,9 +25,11 @@ export const api = createClient({
   ],
 })
 
-export interface ApiOptions extends Omit<RequestOptions, 'prefixUrl'> {
+export interface FetchClientOptions extends Omit<RequestOptions, 'prefixUrl'> {
   next?: {
     revalidate?: number
     tags?: string[]
   }
 }
+
+// TODO: use fetchClient Example
