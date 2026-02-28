@@ -17,6 +17,9 @@ importers:
 
   apps/admin-next:
     dependencies:
+      '@infra-x/fwrap':
+        specifier: ^0.1.1
+        version: 0.1.1
       '@infra-x/typescript-config':
         specifier: ^0.1.6
         version: 0.1.6
@@ -1248,6 +1251,9 @@ packages:
     engines: {node: ^18.17.0 || ^20.3.0 || >=21.0.0}
     cpu: [x64]
     os: [win32]
+
+  '@infra-x/fwrap@0.1.1':
+    resolution: {integrity: sha512-uqisYtZT6bqkrI+FL1Z0bClbpEKgO9j9LZQZNggcaUmAC/bbqJUi/NTfWXvnJLOj/HMK+MW+WiofZq/YODSfkQ==}
 
   '@infra-x/typescript-config@0.1.6':
     resolution: {integrity: sha512-YJiGiiQIOr9ZpECE7ICIp3b9Y2ov7VWy0fHOwqK6Y+YMSDQIdLKTUvmpz7/6YiBsWeUAi5FJ5sJv601BULShwQ==}
@@ -6651,6 +6657,8 @@ snapshots:
 
   '@img/sharp-win32-x64@0.34.5':
     optional: true
+
+  '@infra-x/fwrap@0.1.1': {}
 
   '@infra-x/typescript-config@0.1.6': {}
 

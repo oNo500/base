@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@infra-x/fwrap": "^0.1.1",
     "@infra-x/typescript-config": "^0.1.6",
     "@t3-oss/env-nextjs": "^0.13.10",
     "@workspace/eslint-config": "workspace:*",
