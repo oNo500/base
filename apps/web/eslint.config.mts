@@ -2,26 +2,30 @@ import { GLOB_TESTS } from "@workspace/eslint-config";
 import { composeConfig } from "@workspace/eslint-config";
 
 import type { Linter } from "eslint";
+import { defineConfig } from "eslint/config";
 
-const config: Linter.Config[] = [
-  ...composeConfig({
-    typescript: { tsconfigRootDir: import.meta.dirname },
-    imports: {
-      typescript: true,
-    },
-    nextjs: true,
-    react: true,
-    unicorn: true,
-    stylistic: true,
-    vitest: true,
-  }),
-  {
-    files: GLOB_TESTS,
-    rules: {
-      "@typescript-eslint/no-unsafe-call": "off",
-      "@typescript-eslint/no-unsafe-member-access": "off",
-    },
-  },
-];
+const appConfig : Linter.Config[] = defineConfig({
+  // ignores:GLOB_TESTS,
+  extends: composeConfig({
+      typescript: { tsconfigRootDir: import.meta.dirname },
+      imports: {
+        typescript: true,
+      },
+      nextjs: true,
+      react: true,
+      unicorn: true,
+      stylistic: true,
+    })
+})
+const vitestConfig:Linter.Config[] =defineConfig({
+  files:GLOB_TESTS,
+  extends:composeConfig({
+      typescript: { tsconfigRootDir: import.meta.dirname },
+      vitest: true,
+      unicorn: false,
+      stylistic: false,
+    }),
+})
 
-export default config;
+
+export default [...appConfig,...vitestConfig];
