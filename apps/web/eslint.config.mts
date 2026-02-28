@@ -15,6 +15,7 @@ const appConfig : Linter.Config[] = defineConfig({
       react: true,
       unicorn: true,
       stylistic: true,
+      depend: false, // TODO: disabled until eslint-plugin-depend supports ESLint 10 (es-tooling/eslint-plugin-depend#60)
     })
 })
 const vitestConfig:Linter.Config[] =defineConfig({
@@ -24,6 +25,7 @@ const vitestConfig:Linter.Config[] =defineConfig({
       vitest: true,
       unicorn: false,
       stylistic: false,
+      depend:false
     }),
 })
 

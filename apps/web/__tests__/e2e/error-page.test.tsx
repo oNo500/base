@@ -6,7 +6,7 @@ import ErrorPage from '@/app/error'
 
 describe('error page e2e', () => {
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.spyOn(console, 'error').mockImplementation(vi.fn())
   })
   it('calls reset on Try again click', async () => {
     const user = userEvent.setup()
