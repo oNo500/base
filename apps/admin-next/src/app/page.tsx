@@ -1,5 +1,7 @@
 import { Button } from '@workspace/ui/components/button'
 
+import { env } from '@/config/env'
+
 export default function Home() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
@@ -9,7 +11,13 @@ export default function Home() {
             <h1 className="text-2xl font-bold">Hello World</h1>
             <div className="flex gap-2">
               <Button>Button</Button>
-              <Button variant="outline">Outline</Button>
+              <Button variant="outline">
+                {env.NEXT_PUBLIC_APP_NAME}
+              </Button>
+              <span>
+                env:
+                {env.NODE_ENV}
+              </span>
             </div>
           </div>
         </div>
