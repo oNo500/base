@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, act } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { describe, expect, it, vi } from 'vitest'
 
@@ -10,7 +10,14 @@ vi.mock('next-themes', () => ({
 
 import { ThemeToggle } from '@/components/theme-toggle'
 
-describe('theme toggle e2e', () => {
+describe('theme toggle', () => {
+  it('renders toggle button', () => {
+    act(() => {
+      render(<ThemeToggle />)
+    })
+    expect(screen.getByRole('button', { name: 'Toggle theme' })).toBeInTheDocument()
+  })
+
   it('toggles from light to dark on click', async () => {
     const user = userEvent.setup()
     render(<ThemeToggle />)

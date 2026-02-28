@@ -21,24 +21,7 @@ export default defineConfig({
         test: {
           ...sharedTestConfig,
           name: 'unit',
-          include: ['__tests__/unit/**/*.test.tsx'],
-        },
-      },
-      {
-        ...sharedConfig,
-        test: {
-          ...sharedTestConfig,
-          name: 'integration',
-          include: ['__tests__/integration/**/*.test.tsx'],
-          testTimeout: 10000,
-        },
-      },
-      {
-        ...sharedConfig,
-        test: {
-          ...sharedTestConfig,
-          name: 'snapshot',
-          include: ['__tests__/snapshot/**/*.test.tsx'],
+          include: ['src/**/*.test.{ts,tsx}'],
         },
       },
       {
@@ -46,7 +29,7 @@ export default defineConfig({
         test: {
           ...sharedTestConfig,
           name: 'e2e',
-          include: ['__tests__/e2e/**/*.test.tsx'],
+          include: ['__tests__/e2e/**/*.test.{ts,tsx}'],
           testTimeout: 15000,
         },
       },
