@@ -28,6 +28,6 @@ export default defineConfig({
     resolutions: true,
   },
 
-  // Scan all workspaces in the monorepo
-  ignoreOtherWorkspaces: false,
+  // Recursively scan all workspaces in the monorepo
+  recursive: true,
 })
