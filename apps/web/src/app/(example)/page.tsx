@@ -1,4 +1,4 @@
-import { RootLayout } from '@/components/layout'
+import { RootLayout } from '@/components/root-layout'
 import { HeroSection } from '@/features/example/hero-section'
 
 export default function Home() {
