@@ -11,24 +11,25 @@
   },
   "dependencies": {
     "@infra-x/fwrap": "^0.1.1",
-    "@infra-x/typescript-config": "^0.1.6",
     "@t3-oss/env-nextjs": "^0.13.10",
-    "@workspace/eslint-config": "workspace:*",
     "@workspace/ui": "workspace:*",
     "next": "16.1.6",
+    "next-themes": "^0.4.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-error-boundary": "^6.1.1",
     "shadcn": "^3.8.5",
     "zod": "^3.25.76"
   },
   "devDependencies": {
+    "@infra-x/typescript-config": "^0.1.6",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@workspace/eslint-config": "workspace:*",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

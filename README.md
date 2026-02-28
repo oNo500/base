@@ -3,3 +3,5 @@
 2. ENV config: @t3-oss/env-nextjs
 3. 路由的唯一数据源 app-paths
 4. fetch: @infra-x/fwrap
+5. 主题配置
+6. error-boundary: react-error-boundary
