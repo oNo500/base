@@ -10,7 +10,7 @@ export const env = createEnv({
     NEXT_PUBLIC_APP_URL: z.url().optional().default('http://localhost:3000'),
   },
   shared: {
-    NODE_ENV: z.enum(['development', 'test', 'production']),
+    NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
   },
   runtimeEnv: {
     DATABASE_URL: process.env.DATABASE_URL,
