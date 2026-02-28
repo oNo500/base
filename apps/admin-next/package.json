@@ -6,10 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@infra-x/typescript-config": "^0.1.6",
     "@workspace/ui": "workspace:*",
+    "@workspace/eslint-config":"workspace:*",
     "next": "16.1.6",
     "react": "19.2.3",
     "react-dom": "19.2.3",

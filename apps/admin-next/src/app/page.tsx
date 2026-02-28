@@ -1,4 +1,4 @@
-import { Button } from "@workspace/ui/components/button";
+import { Button } from '@workspace/ui/components/button'
 
 export default function Home() {
   return (
@@ -15,5 +15,5 @@ export default function Home() {
         </div>
       </main>
     </div>
-  );
+  )
 }
