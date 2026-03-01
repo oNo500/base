@@ -1,19 +1,16 @@
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navbar'
-import type { auth } from '@/lib/auth'
-
-type Session = typeof auth.$Infer.Session
 
 export function RootLayout({
   children,
-  session,
+  navbar = <Navbar />,
 }: {
   children: React.ReactNode
-  session: Session | null
+  navbar?: React.ReactNode
 }) {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-      <Navbar initialSession={session} />
+      {navbar}
       <main id="main-content" className="h-full">
         {children}
       </main>

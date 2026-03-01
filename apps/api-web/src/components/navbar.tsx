@@ -37,10 +37,6 @@ import { appPaths } from '@/config/app-paths'
 import { env } from '@/config/env'
 import { authClient } from '@/lib/auth-client'
 
-import type { auth } from '@/lib/auth'
-
-type Session = typeof auth.$Infer.Session
-
 const navItems = [
   {
     label: 'Products',
@@ -53,10 +49,8 @@ const navItems = [
   { label: 'Pricing', href: appPaths.home.href },
 ]
 
-export function Navbar({ initialSession }: { initialSession: Session | null }) {
-  // initialSession 来自服务端，作为初始值；useSession 在后台同步（处理登出等状态变化）
-  const { data: clientSession } = authClient.useSession()
-  const session = clientSession ?? initialSession
+export function Navbar() {
+  const { data: session, isPending } = authClient.useSession()
   const router = useRouter()
   async function handleSignOut() {
     await authClient.signOut()

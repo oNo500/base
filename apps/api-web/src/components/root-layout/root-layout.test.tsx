@@ -10,6 +10,7 @@ vi.mock('@/config/env', () => ({
 vi.mock('@/config/app-paths', () => ({
   appPaths: {
     home: { href: '/' },
+    auth: { login: { getHref: () => '/login' } },
   },
 }))
 
@@ -21,8 +22,14 @@ vi.mock('next/link', () => ({
   ),
 }))
 
-vi.mock('next-themes', () => ({
-  useTheme: () => ({ resolvedTheme: 'light', setTheme: vi.fn() }),
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn() }),
+}))
+
+vi.mock('@/lib/auth-client', () => ({
+  authClient: {
+    useSession: () => ({ data: null, isPending: true }),
+  },
 }))
 
 import { RootLayout } from '@/components/root-layout'
