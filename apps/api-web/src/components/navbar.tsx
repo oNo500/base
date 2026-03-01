@@ -18,7 +18,6 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@workspace/ui/components/dropdown-menu'
-import { ThemeSwitcher } from '@workspace/ui/components/kibo-ui/theme-switcher'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -32,7 +31,6 @@ import { Skeleton } from '@workspace/ui/components/skeleton'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useTheme } from 'next-themes'
 
 import { Logo } from '@/components/logo'
 import { appPaths } from '@/config/app-paths'
@@ -60,8 +58,6 @@ export function Navbar({ initialSession }: { initialSession: Session | null }) {
   const { data: clientSession } = authClient.useSession()
   const session = clientSession ?? initialSession
   const router = useRouter()
-  const { theme, setTheme } = useTheme()
-
   async function handleSignOut() {
     await authClient.signOut()
     router.push(appPaths.auth.login.getHref())
@@ -155,17 +151,9 @@ export function Navbar({ initialSession }: { initialSession: Session | null }) {
                 {session
                   ? (
                       <>
-                        <div className="px-2 py-1.5 text-sm">
-                          <div className="font-medium">{session.user.name}</div>
-                          <div className="text-muted-foreground">{session.user.email}</div>
-                        </div>
-                        <DropdownMenuSeparator />
-                        <div className="flex items-center justify-between px-2 py-1.5">
-                          <span className="text-sm">Theme</span>
-                          <ThemeSwitcher
-                            value={theme as 'light' | 'dark' | 'system'}
-                            onChange={setTheme}
-                          />
+                        <div className="px-2 py-1.5 text-sm max-w-48">
+                          <div className="font-medium truncate">{session.user.name}</div>
+                          <div className="text-muted-foreground truncate">{session.user.email}</div>
                         </div>
                         <DropdownMenuSeparator />
                         <DropdownMenuItem onClick={handleSignOut}>
