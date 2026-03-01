@@ -51,14 +51,9 @@ export const ThemeSwitcher = ({
     [setTheme]
   );
 
-  // Prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <div
@@ -68,7 +63,7 @@ export const ThemeSwitcher = ({
       )}
     >
       {themes.map(({ key, icon: Icon, label }) => {
-        const isActive = theme === key;
+        const isActive = mounted && theme === key;
 
         return (
           <button
