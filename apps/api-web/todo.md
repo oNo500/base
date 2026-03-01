@@ -5,3 +5,8 @@
    2. 注册
 3. 异步数据 react-query 集成（或者swc？）
 4. 登录之后显示个人信息
+5. Suspense boundary
+   
+
+   ---
+   components 中应该是纯组件，不应该包含副作用，比如请求
