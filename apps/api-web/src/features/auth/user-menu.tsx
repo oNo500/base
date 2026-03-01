@@ -1,0 +1,99 @@
+'use client'
+
+import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar'
+import { Button } from '@workspace/ui/components/button'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@workspace/ui/components/dropdown-menu'
+import { Skeleton } from '@workspace/ui/components/skeleton'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+
+import { appPaths } from '@/config/app-paths'
+import { authClient } from '@/lib/auth-client'
+
+export function UserMenu({ variant }: { variant: 'desktop' | 'mobile' }) {
+  const { data: session } = authClient.useSession()
+  const router = useRouter()
+
+  async function handleSignOut() {
+    await authClient.signOut()
+    router.push(appPaths.auth.login.getHref())
+  }
+
+  if (variant === 'mobile') {
+    if (session) {
+      return (
+        <div className="flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <Avatar className="size-8">
+              <AvatarImage src={session.user.image ?? undefined} alt={session.user.name} />
+              <AvatarFallback className="bg-transparent p-0">
+                <Skeleton className="size-full rounded-full" />
+              </AvatarFallback>
+            </Avatar>
+            <div className="flex flex-col">
+              <span className="text-sm font-medium">{session.user.name}</span>
+              <span className="text-xs text-muted-foreground">{session.user.email}</span>
+            </div>
+          </div>
+          <Button variant="outline" size="sm" onClick={handleSignOut} className="w-full">
+            Sign out
+          </Button>
+        </div>
+      )
+    }
+
+    return (
+      <Button size="sm" nativeButton={false} render={<Link href={appPaths.auth.login.getHref()} />} className="w-full">
+        Login
+      </Button>
+    )
+  }
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger
+        render={(
+          <Button
+            variant="ghost"
+            size="icon"
+            className="rounded-full"
+            aria-label="User menu"
+          >
+            <Avatar className="size-7">
+              <AvatarImage src={session?.user.image ?? undefined} alt={session?.user.name ?? ''} />
+              <AvatarFallback className="bg-transparent p-0">
+                <Skeleton className="size-full rounded-full" />
+              </AvatarFallback>
+            </Avatar>
+          </Button>
+        )}
+      />
+      <DropdownMenuContent align="end">
+        {session
+          ? (
+              <>
+                <div className="px-2 py-1.5 text-sm max-w-48">
+                  <div className="font-medium truncate">{session.user.name}</div>
+                  <div className="text-muted-foreground truncate">{session.user.email}</div>
+                </div>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut}>
+                  Sign out
+                </DropdownMenuItem>
+              </>
+            )
+          : (
+              <DropdownMenuItem render={<Link href={appPaths.auth.login.getHref()} />}>
+                Login
+              </DropdownMenuItem>
+            )}
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

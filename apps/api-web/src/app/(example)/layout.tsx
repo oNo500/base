@@ -1,16 +1,10 @@
 import { Footer } from '@/components/footer'
-import { Navbar } from '@/components/navbar'
+import { AuthNavbar } from '@/features/auth/auth-navbar'
 
-export function RootLayout({
-  children,
-  navbar = <Navbar />,
-}: {
-  children: React.ReactNode
-  navbar?: React.ReactNode
-}) {
+export default function ExampleLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen">
-      {navbar}
+      <AuthNavbar />
       <main id="main-content" className="h-full">
         {children}
       </main>

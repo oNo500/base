@@ -1,7 +1,6 @@
 'use client'
 
 import { Github } from '@workspace/icons'
-import { Avatar, AvatarFallback, AvatarImage } from '@workspace/ui/components/avatar'
 import { Button } from '@workspace/ui/components/button'
 import {
   Drawer,
@@ -12,13 +11,6 @@ import {
   DrawerTrigger,
 } from '@workspace/ui/components/drawer'
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@workspace/ui/components/dropdown-menu'
-import {
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -27,15 +19,14 @@ import {
   NavigationMenuTrigger,
 } from '@workspace/ui/components/navigation-menu'
 import { Separator } from '@workspace/ui/components/separator'
-import { Skeleton } from '@workspace/ui/components/skeleton'
 import { Menu } from 'lucide-react'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 
 import { Logo } from '@/components/logo'
 import { appPaths } from '@/config/app-paths'
 import { env } from '@/config/env'
-import { authClient } from '@/lib/auth-client'
+
+import { UserMenu } from './user-menu'
 
 const navItems = [
   {
@@ -49,14 +40,7 @@ const navItems = [
   { label: 'Pricing', href: appPaths.home.href },
 ]
 
-export function Navbar() {
-  const { data: session, isPending } = authClient.useSession()
-  const router = useRouter()
-  async function handleSignOut() {
-    await authClient.signOut()
-    router.push(appPaths.auth.login.getHref())
-  }
-
+export function AuthNavbar() {
   return (
     <header className="border-b border-border">
       <div className="container py-3.5">
@@ -112,7 +96,7 @@ export function Navbar() {
             </NavigationMenu>
           </div>
 
-          {/* Desktop: right side actions */}
+          {/* Desktop: right side */}
           <div className="hidden md:flex items-center gap-2">
             <Button
               render={<a href="https://github.com/oNo500/base" target="_blank" rel="noopener noreferrer" />}
@@ -123,45 +107,7 @@ export function Navbar() {
             >
               <Github className="size-4" aria-hidden="true" />
             </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger
-                render={(
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full"
-                    aria-label="User menu"
-                  >
-                    <Avatar className="size-7">
-                      <AvatarImage src={session?.user.image ?? undefined} alt={session?.user.name ?? ''} />
-                      <AvatarFallback className="bg-transparent p-0">
-                        <Skeleton className="size-full rounded-full" />
-                      </AvatarFallback>
-                    </Avatar>
-                  </Button>
-                )}
-              />
-              <DropdownMenuContent align="end">
-                {session
-                  ? (
-                      <>
-                        <div className="px-2 py-1.5 text-sm max-w-48">
-                          <div className="font-medium truncate">{session.user.name}</div>
-                          <div className="text-muted-foreground truncate">{session.user.email}</div>
-                        </div>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={handleSignOut}>
-                          Sign out
-                        </DropdownMenuItem>
-                      </>
-                    )
-                  : (
-                      <DropdownMenuItem render={<Link href={appPaths.auth.login.getHref()} />}>
-                        Login
-                      </DropdownMenuItem>
-                    )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserMenu variant="desktop" />
           </div>
 
           {/* Mobile: hamburger + drawer */}
@@ -218,35 +164,7 @@ export function Navbar() {
                 </nav>
                 <Separator />
                 <div className="p-4">
-                  {session
-                    ? (
-                        <div className="flex flex-col gap-3">
-                          <div className="flex items-center gap-2">
-                            <Avatar className="size-8">
-                              <AvatarImage src={session.user.image ?? undefined} alt={session.user.name} />
-                              <AvatarFallback className="bg-transparent p-0">
-                                <Skeleton className="size-full rounded-full" />
-                              </AvatarFallback>
-                            </Avatar>
-                            <div className="flex flex-col">
-                              <span className="text-sm font-medium">{session.user.name}</span>
-                              <span className="text-xs text-muted-foreground">{session.user.email}</span>
-                            </div>
-                          </div>
-                          <DrawerClose asChild>
-                            <Button variant="outline" size="sm" onClick={handleSignOut} className="w-full">
-                              Sign out
-                            </Button>
-                          </DrawerClose>
-                        </div>
-                      )
-                    : (
-                        <DrawerClose asChild>
-                          <Button size="sm" nativeButton={false} render={<Link href={appPaths.auth.login.getHref()} />} className="w-full">
-                            Login
-                          </Button>
-                        </DrawerClose>
-                      )}
+                  <UserMenu variant="mobile" />
                 </div>
               </DrawerContent>
             </Drawer>
