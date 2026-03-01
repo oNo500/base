@@ -1,18 +1,12 @@
-'use client'
-
 import { Github } from '@workspace/icons'
 import { Button } from '@workspace/ui/components/button'
-import { ThemeSwitcher } from '@workspace/ui/components/kibo-ui/theme-switcher'
 import Link from 'next/link'
-import { useTheme } from 'next-themes'
 
 import { Logo } from '@/components/logo'
 import { appPaths } from '@/config/app-paths'
 import { env } from '@/config/env'
 
 export function Navbar() {
-  const { theme, setTheme } = useTheme()
-
   return (
     <header className="border-b border-border">
       <div className="container py-3.5">
@@ -26,10 +20,6 @@ export function Navbar() {
             <span className="text-sm font-semibold">{env.NEXT_PUBLIC_APP_NAME}</span>
           </Link>
           <div className="flex items-center gap-2">
-            <ThemeSwitcher
-              value={theme as 'light' | 'dark' | 'system'}
-              onChange={setTheme}
-            />
             <Button
               render={<a href="https://github.com/oNo500/base" target="_blank" rel="noopener noreferrer" />}
               nativeButton={false}
